@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logon</title>
+    <script>
+        function myck(type) {
+            var inputUsername = document.getElementById("username");
+            var inputPassword = document.getElementById("password");
+            var inputRepassword = document.getElementById("repassword");
+            if(type == 1) {
+                //提交
+                if(inputUsername.value == "") {
+                    alert("请先输入用户名！");
+                    return false;
+                }
+                if(inputPassword.value == "") {
+                    alert("请先输入密码！");
+                    return false;
+                }
+                if(inputPassword.value != inputRepassword.value) {
+                    alert("两次密码不一致，请重新检查！");
+                    return false;
+                }
+                alert("恭喜！操作成功！");
+            }else if(type == 2) {
+                //清空
+                if(confirm("是否确认清空")) {
+                    inputUsername.value = "";
+                    inputPassword.value = "";
+                    inputRepassword.value = "";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 100px;" >
+        <h1>注册</h1>
+        <div style="margin-left: -20px;">
+            &nbsp;用&nbsp;户&nbsp;名&nbsp;：<input id="username" name="uname" type="text"><p></p>
+            &nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;：<input id="password" name="psw" type="password"><p></p>
+            确认密码：<input id="repassword" name="repsw" type="password"><p></p>
+            <div>
+                <input type="button" value="提交" onclick="myck(1)">
+                <input type="button" value="清空" onclick="myck(2)">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

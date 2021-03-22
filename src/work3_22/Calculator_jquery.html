@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--编码格式-->
+    <meta charset="UTF-8">
+    <title>计算器</title>
+    <!--导入jquery-->
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        //编写函数来对按钮点击事件相应
+        function myck(type) {
+            var num1 = jQuery("#num1"); //获取到id为“num1”的值
+            var num2 = jQuery("#num2"); //获取到id为“num2”的值
+            if(type == 1) { //如果为类型1：+
+                //调用非空检验函数，若为空，程序停止
+                if(!check(num1,num2)) return false;
+                //把num1和num2的值转为int类型后相加
+                var result = parseInt(num1.val())+parseInt(num2.val());
+                //id为"result"的div显示
+                jQuery("#result").text("最终计算结果："+result);
+            }else if(type == 2) {   //如果为类型2：-
+                if(!check(num1,num2)) return false;
+                //相减
+                var result = parseInt(num1.val())-parseInt(num2.val());
+                jQuery("#result").text("最终计算结果："+result);
+            }else if(type == 3) {   //如果为类型3：*
+                if(!check(num1,num2)) return false;
+                //相乘
+                var result = parseInt(num1.val())*parseInt(num2.val());
+                jQuery("#result").text("最终计算结果："+result);
+            }else if(type == 4) {   //如果为类型4：/
+                if (!check(num1, num2)) return false;
+                //相除
+                var result = parseInt(num1.val()) / parseInt(num2.val());
+                jQuery("#result").text("最终计算结果：" + result);
+            }else {
+                //数字1清空
+                num1.val("");
+                //数字2清空
+                num2.val("");
+                //结果清空
+                jQuery("#result").text("");
+            }
+        }
+
+        //非空校验函数
+        function check(num1,num2) {
+            //若去掉空格后的值为空
+            if(num1.val().trim() == "") {
+                //则显示
+                alert("请先输入数字1");
+                return false;   //终止
+            }
+            if(num2.val().trim() == "") {
+                alert("请先输入数字2");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<!--设置格式style：居中（text-align: center），距顶部（margin-top: 100px）-->
+<div style="text-align: center;margin-top: 100px">
+<!--    设置字体格式大小（font-size: 50px;）-->
+    <span style="font-size: 50px;">简单计算器</span>
+</div>
+<div style="text-align: center;margin-top: 50px">
+<!--    给数字1数字2对应id，为找到里面内容，类型为数字（type="number"）-->
+    数字1：<input id="num1" type="number" ><p></p>
+    数字2：<input id="num2" type="number" >
+</div>
+<div style="text-align: center;margin-top: 20px">
+<!--    每个按钮触发myck函数-->
+    <input type="button" value="相加" onclick="myck(1)">
+    <input type="button" value="相减" onclick="myck(2)">
+    <input type="button" value="相乘" onclick="myck(3)">
+    <input type="button" value="相除" onclick="myck(4)">
+    <input type="button" value="清空" onclick="myck(5)">
+</div>
+<!--最后一块区域显示结果-->
+<div id="result" style="text-align: center; margin-top: 20px">
+
+</div>
+</body>
+</html>

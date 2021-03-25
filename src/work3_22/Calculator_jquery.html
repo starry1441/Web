@@ -49,10 +49,13 @@
             if(num1.val().trim() == "") {
                 //则显示
                 alert("请先输入数字1");
+                //让光标重置到输入框1
+                num1.focus();
                 return false;   //终止
             }
             if(num2.val().trim() == "") {
                 alert("请先输入数字2");
+                num2.focus();
                 return false;
             }
             return true;

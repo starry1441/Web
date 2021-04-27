@@ -31,15 +31,13 @@ public class ThreadDemo12 {
         ThreadGroup group = new ThreadGroup("百米赛跑第一组");
 
         //创建运动
-//        Thread t1 = new Thread(runnable,"张三");
-//        Thread t2 = new Thread(runnable,"李四");
         Thread t1 = new Thread(group,runnable,"张三");
         Thread t2 = new Thread(group,runnable,"李四");
         t1.start();
         t2.start();
 
         // 打印线程分组的详情
-        group.list();
+//        group.list();
 
         //等待所有选手到达
         while (group.activeCount() != 0) {

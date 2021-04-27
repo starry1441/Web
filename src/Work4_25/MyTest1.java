@@ -23,7 +23,7 @@ public class MyTest1 {
                     }
                 }
             }
-        });
+        },"李四");
         t1.start();
         Thread t2 = new Thread(new Runnable() {
             @Override
@@ -38,7 +38,7 @@ public class MyTest1 {
                     }
                 }
             }
-        });
+        },"张三");
         t2.start();
     }
 

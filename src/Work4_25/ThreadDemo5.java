@@ -10,6 +10,16 @@ package Work4_25;
 public class ThreadDemo5 {
 
     public static void main(String[] args) {
+
+        Thread t1 = new Thread() {
+            @Override
+            public void run() {
+                System.out.println("线程名：" +
+                        Thread.currentThread().getName());
+            }
+        };
+        t1.start();
+
         Thread thread = new Thread() {
             @Override
             public void run() {

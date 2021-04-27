@@ -18,10 +18,10 @@ public class ThreadDemo14 {
             }
         };
 
-        for (int i = 0; i < 10; i++) {
-            Thread t1 = new Thread(runnable,"张三");
-            Thread t2 = new Thread(runnable,"李四");
-            Thread t3 = new Thread(runnable,"王五");
+        for (int i = 0; i < 6; i++) {
+            Thread t1 = new Thread(runnable,"小优先线程");
+            Thread t2 = new Thread(runnable,"中优先线程");
+            Thread t3 = new Thread(runnable,"大优先线程");
 
             t1.setPriority(1);  //最小优先级
 //            t1.setPriority(Thread.MIN_PRIORITY);

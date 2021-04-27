@@ -19,15 +19,15 @@ public class ThreadDemo13 {
                 e.printStackTrace();
             }
         },"张三");
-        System.out.println("线程状态：" + t1.getState());
+        System.out.println("线程状态：" + t1.getState());    //NEW
         t1.start();
-        System.out.println("线程状态：" + t1.getState());
-        System.out.println("线程ID：" + t1.getId());
-        System.out.println("线程名称：" + t1.getName());
-        System.out.println("线程优先级：" + t1.getPriority());
-        System.out.println("线程是否为后台进程：" + t1.isDaemon());
-        System.out.println("线程是否存活：" + t1.isAlive());
-        System.out.println("线程是否被中断：" + t1.isInterrupted());
+        System.out.println("线程状态：" + t1.getState());    //RUNNABLE
+        System.out.println("线程ID：" + t1.getId());        //12
+        System.out.println("线程名称：" + t1.getName());     //张三
+        System.out.println("线程优先级：" + t1.getPriority());    //5
+        System.out.println("线程是否为后台进程：" + t1.isDaemon());   //false
+        System.out.println("线程是否存活：" + t1.isAlive());   //true
+        System.out.println("线程是否被中断：" + t1.isInterrupted());    //false
     }
 
 }

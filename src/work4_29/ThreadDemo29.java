@@ -2,13 +2,13 @@ package work4_29;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:内存不可见问题
+ * Description:解决内存不可见问题
  * User: starry
  * Date: 2021 -04 -29
  * Time: 11:37
  */
-public class ThreadDemo27 {
-    private static boolean flag = false;
+public class ThreadDemo29 {
+    private static volatile boolean flag = false;
 
     public static void main(String[] args) {
         Thread t1 = new Thread(new Runnable() {

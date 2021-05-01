@@ -7,23 +7,32 @@ package work4_29;
  * Date: 2021 -04 -29
  * Time: 19:26
  */
-public class ThreadDemo31 {
+public class ThreadDemo35 {
     //全局变量
     private static int number = 0;
     //循环次数
     private static final int maxSize = 100000;
 
+    public synchronized void increment() {
+        for (int i = 0; i < maxSize; i++) {
+            number++;
+        }
+    }
+
+    public synchronized void decrement() {
+        for (int i = 0; i < maxSize; i++) {
+            number--;
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        Object lock = new Object();
+        ThreadDemo35 threadDemo35 = new ThreadDemo35();
+
         //+10w
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < maxSize; i++) {
-                    synchronized (lock) {
-                        number++;
-                    }
-                }
+                threadDemo35.increment();
             }
         });
         t1.start();
@@ -32,13 +41,7 @@ public class ThreadDemo31 {
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < maxSize; i++) {
-                    synchronized (lock) {
-                        synchronized (lock) {
-                            number--;
-                        }
-                    }
-                }
+                threadDemo35.decrement();
             }
         });
         t2.start();

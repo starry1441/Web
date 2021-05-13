@@ -9,7 +9,7 @@ import java.util.Date;
  * Date: 2021 -05 -09
  * Time: 11:09
  */
-public class ThreadDemo39 {
+public class ThreadDemo41 {
 
     public static void main(String[] args) throws InterruptedException {
         Object lock = new Object();
@@ -30,7 +30,6 @@ public class ThreadDemo39 {
                 System.out.println("线程1：执行完成"+new Date());
             }
         });
-        t1.start();
 
         Thread t2 = new Thread(new Runnable() {
             @Override
@@ -48,14 +47,47 @@ public class ThreadDemo39 {
                 System.out.println("线程2：执行完成"+new Date());
             }
         });
+
+        Thread t3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("线程3：进入休眠"+new Date());
+                synchronized (lock) {
+                    try {
+                        //线程休眠
+                        lock.wait(3000);
+//                    Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("线程3：执行完成"+new Date());
+            }
+        });
+
+        t1.start();
         t2.start();
+        t3.start();
 
-        Thread.sleep(2000);
-        System.out.println("主线程唤醒线程1和线程2");
 
+
+        Thread.sleep(1000);
+        System.out.println("--------");
         synchronized (lock) {
             //唤醒线程
-            lock.notifyAll();
+            lock.notify();
+        }
+
+        Thread.sleep(1000);
+        synchronized (lock) {
+            //唤醒线程
+            lock.notify();
+        }
+
+        Thread.sleep(1000);
+        synchronized (lock) {
+            //唤醒线程
+            lock.notify();
         }
 
     }

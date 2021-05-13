@@ -33,9 +33,9 @@ public class ThreadDemo38 {
         Thread.sleep(1000);
         System.out.println("主线程唤醒线程1");
 
-        synchronized (lock2) {
+        synchronized (lock) {
             //唤醒线程
-            lock2.notify();
+            lock.notify();
         }
 
     }

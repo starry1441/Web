@@ -1,5 +1,6 @@
 package work5_30;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
@@ -30,24 +31,18 @@ public class ThreadDemo100 {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                }
-            });
-            Thread.sleep(finalI * 1000);
-
-        }
-
-        for (int i = 1; i < 6; i++) {
-            int finalI = i;
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println(Thread.currentThread().getName() + "开始起跑");
+                    //
                     try {
-                        Thread.sleep(finalI * 1000);
+                        System.out.println(Thread.currentThread().getName() + "等待其他人---");
+                        //计数器-1，判断计数器是否为0
+                        cyclicBarrier.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    } catch (BrokenBarrierException e) {
+                        e.printStackTrace();
                     }
-                    System.out.println(Thread.currentThread().getName() + "到达终点");
+                    // 代码执行到此行，说明已经有一组线程满足条件了
+                    System.out.println(Thread.currentThread().getName() + "执行结束。。。");
                 }
             }).start();
         }
